@@ -12,7 +12,8 @@ if (process.env.NODE_ENV === 'test') {
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
   DATABASE_URL: z.string(),
-  PORT: z.number().default(3333),
+  DATABASE_CLIENT: z.enum(['sqlite', 'pg']).default('sqlite'),
+  PORT: z.coerce.number().default(3333),
 })
 
 // O método safeParse realiza tanto a conversão quanto a validação dos dados de entrada (process.env) conforme o esquema definido (envSchema)
